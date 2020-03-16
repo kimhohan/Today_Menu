@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		 <link href="style.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class ="randomBtn" style="text-align: center;">
+			<button class="btn" style="font-size: 20px;">랜덤 선택</button>
+		
+			<h1 style="font-size: 25px; text-align: center;">오늘의 메뉴: 케이크</h1>
+		
+			<img class = "first_img" src="images/1.jpg">
+		
+			<section class ="imgs" style="text-align: center; padding: 5px; ">
+				<img id="0" src="images/1.jpg" class= "bgImage">
+				<img id="1" src="images/2.jpg">
+            	<img id="2" src="images/3.jpg">
+            	<img id="3" src="images/4.jpg">
+			</section>
+			</div>
+	</body>
+	
+	<script type="text/javascript">
+	
+		const RanBtn = document.querySelector(".btn"),
+		 	section = document.querySelector("section"),
+		 	imgList = section.querySelectorAll("img"),
+		 	firstImg = document.querySelector(".first_img"),
+		 	currentMenu = document.querySelector("h1");
+	
+		const ING_NUMBER = 4,
+			Menu = ["케이크","햄버거","스테이크","샌드위치"];
+		
+		function imgSetDefault(){
+		    for(let i = 0; i < imgList.length; i++){
+		        imgList[i].classList.remove("bgImage");
+		        imgList[i].classList.remove("mouseOver");
+		    }
+		}
+
+		function handleImgClicked(event){
+		    const nowImg = event.target;
+		    firstImg.src = nowImg.src;
+		    currentMenu.innerText = "오늘의 메뉴 : " + Menu[parseInt(nowImg.id)];
+		    imgSetDefault();
+		    nowImg.classList.add("bgImage");
+		}
+		
+		function handleBtnClicked(){
+			const imgNumber = Math.floor(Math.random() * ING_NUMBER);
+			firstImg.src = `images/${imgNumber + 1}.jpg`;
+			currentMenu.innerText = "오늘의 메뉴 : " + Menu[imgNumber];
+			imgSetDefault();
+			imgList[imgNumber].classList.add("bgImage");
+		}
+		
+		function handleImgMouseOver(event){
+		    const nowImg = event.target;
+		    nowImg.opacity = 0.5;
+		    nowImg.classList.add("mouseOver");
+		}
+
+		function handleImgMouseOut(event){
+		    const nowImg = event.target;
+		    nowImg.classList.remove("mouseOver");
+		}
+		
+		function init(){
+			RanBtn.addEventListener("click", handleBtnClicked);
+			
+		    for(let i = 0; i < imgList.length; i++){
+		        imgList[i].addEventListener("mouseover",handleImgMouseOver);
+		        imgList[i].addEventListener("mouseout", handleImgMouseOut);
+		        imgList[i].addEventListener("click",handleImgClicked);
+		    }
+		}
+		
+		init();
+	</script>
+
+</html>

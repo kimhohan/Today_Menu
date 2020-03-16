@@ -7,3 +7,4 @@
 3. 랜덤 음식 고르기
 
 ● result
+![image](https://user-images.githubusercontent.com/33507553/76768241-10c57c80-67de-11ea-88bc-5b8b61dbf539.png)
